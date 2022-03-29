@@ -1,0 +1,81 @@
+message.mentions.members contains all @mention as GuildMember objects.
+message.mentions.users contains all @mention as User objects.
+message.mentions.roles contains all @role mention as Role objects.
+message.mentions.channels contains all #channel mentions as TextChannel or VoiceChannel objects.
+
+
+message.author -> User
+
+User {
+  id: '468047721765535746',
+  bot: false,
+  system: false,
+  flags: UserFlags { bitfield: 0 },
+  username: 'Chill Vibes',
+  discriminator: '2559',
+  avatar: '16b6628742c74ffc973401a0f2b3698d',
+  banner: undefined,
+  accentColor: undefined
+}
+
+
+TODO:
+- check per-guild settings or get permissions WHEN TRIGGER    EVENT messageCreate.js
+
+
+
+EMBEDS
+Here are a few rules for embeds:
+
+- Every field is optional
+- At least one field must be present
+- No field can be empty, null, or undefined.
+
+SQL
+For this example points system we want the user's ID, points and level to be compliant with Discord's Developer Terms of Service.
+
+
+MAKING A STARBOARD
+In order to receive the events used in this code messageReactionAdd and messageReactionRemove, you need to enable the GUILD_MESSAGE_REACTIONS intent, along with GUILD_MESSAGES and GUILDS.
+A starboard is a popular feature in bots that serve as a channel of messages that users of the server find funny, stupid, or both! To make a functioning starboard, we need to monitor for a reaction being added to a message, and we'll do this with the messageReactionAdd and messageReactionRemove events.
+
+AUDIOT LOG
+The main permission the bot will need is 'VIEW_AUDIT_LOGS'. This permission allows the bot to view the audit logs.
+Notice the reason field. Some audit logs, like kicking and banning, can provide a reason. You can probably make the bot log when a user is banned and for whatever reason
+
+return     ->     entry
+
+GuildAuditLogsEntry {
+  targetType: 'MESSAGE',
+  actionType: 'DELETE',
+  action: 'MESSAGE_DELETE',
+  reason: null,
+  executor: [Object],
+  changes: null,
+  id: '434116792567201792',
+  extra: [Object],
+  target: [Object] }
+
+  executor object consist return
+
+  User {
+  id: '286270602820452353',
+  username: 'Zoth The Wumpus',
+  discriminator: '6066',
+  avatar: '57361ef0f8e23e02a44069c3dd5f5f47',
+  bot: false,
+  lastMessageID: '435165896198062091',
+  lastMessage: [Object] 
+}
+
+A Collection is a utility class that stores data. Collections are the Javascript Map() data structure with additional utility methods.
+Examples of Collections include:
+
+client.users.cache, client.guilds.cache, client.channels.cache
+guild.channels.cache, guild.members.cache
+message logs (in the callback of messages.fetch())
+client.emojis.cache
+
+Very simply, to get anything by ID you can use Collection.get(id). 
+For instance, getting a channel can be client.channels.cache.get("81385020756865024"). 
+Getting a user is also trivial: client.users.cache.get("139412744439988224")
